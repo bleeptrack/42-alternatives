@@ -39,7 +39,7 @@ function init() {
 
     initCurlNoise();
 
-    renderer = new THREE.WebGLRenderer( {  } );
+    renderer = new THREE.WebGLRenderer( {  preserveDrawingBuffer: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( innerWidth, innerHeight );
     renderer.autoClear = false;
@@ -74,7 +74,21 @@ function init() {
         if(!preventOnControlsChangeReset)
             resetCanvas();
     });
+    
+    document.body.onkeyup = function(e){
+        if(e.keyCode == 32){
+            saveImage()
+        }
+    }
 
+    function saveImage() {
+        const canvas =  document.getElementsByTagName("canvas")[0]
+        const image = canvas.toDataURL("image/png");
+        const a = document.createElement("a");
+        a.href = image.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+        a.download="image.png"
+        a.click();
+    }
 
 
     offscreenRT = new THREE.WebGLRenderTarget(innerWidth, innerHeight, {

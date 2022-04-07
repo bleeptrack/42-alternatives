@@ -71,8 +71,6 @@ function line(lastPos, color){
         dir = dir.applyAxisAngle(vec3(1,0,0), dirx  * Math.PI - Math.PI/2)
         dir = dir.applyAxisAngle(vec3(0,1,0), diry  * Math.PI - Math.PI/2)
         dir = dir.applyAxisAngle(vec3(0,0,1), dirz  * Math.PI - Math.PI/2)
-        console.log(dir.x)
-        console.log(dir)
         
         lines.push(
             new Line({
